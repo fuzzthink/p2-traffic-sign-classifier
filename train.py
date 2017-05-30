@@ -6,14 +6,16 @@ from keras.models import Sequential
 from keras.layers.core import Dense, Activation, Flatten, Dropout
 from keras.layers.convolutional import Convolution2D
 from keras.layers.pooling import MaxPooling2D
-from sklearn.model_selection import train_test_split
 from keras.optimizers import SGD
 from keras.utils import np_utils
 
 
+labelPairs = np.genfromtxt('signnames.csv', 
+    delimiter=',',skip_header=1, dtype=[('class','i8'),('sign','S50')])
+n_classes = len(labelPairs)
+
 ## Network Arch
 drop = 0.25
-n_classes = 43
 layers = [
     Convolution2D(32,3,3, border_mode='valid', input_shape=(32,32,1), activation='relu'),
     Convolution2D(32,3,3, border_mode='valid', activation='relu'),
@@ -46,21 +48,25 @@ if len(sys.argv) > 1:
 
 
 ## Train
-trainset= "data/train.p"
+datapath = '../data/traffic-signs-data/'
+trainset = datapath+'train.p'
+validset = datapath+'valid.p'
 with open(trainset, mode='rb') as f:
     train = pickle.load(f)
+with open(validset, mode='rb') as f:
+    valid = pickle.load(f)
     
 X_train, y_train = train['features'], train['labels']
-classIds, classCounts = np.unique(y_train, return_counts=True)
-n_classes = len(classIds)
+X_valid, y_valid = valid['features'], valid['labels']
 
-X_gray = npu.grayscale(X_train)
-_X_train, _X_val, _y_train, _y_val = train_test_split(X_gray, y_train, random_state=33)
+X_train_gray = npu.grayscale(X_train)
+X_valid_gray = npu.grayscale(X_valid)
 
-X_norm = npu.normalize(_X_train)
-y_hot = np_utils.to_categorical(_y_train, n_classes)
-X_val_norm = npu.normalize(_X_val)
-y_val_hot = np_utils.to_categorical(_y_val, n_classes)
+X_norm = npu.normalize(X_train_gray)
+X_val_norm = npu.normalize(X_valid_gray)
+
+y_hot = np_utils.to_categorical(y_train, n_classes)
+y_val_hot = np_utils.to_categorical(y_valid, n_classes)
 
 batch_size = 128
 epoch = 30

@@ -1,20 +1,24 @@
-import glob, h5py, argparse
+import glob, h5py, argparse, cv2, pickle
+import numpy as np 
 import np_util as npu 
 import matplotlib.pyplot as plt
 from keras.models import load_model
+from keras.utils import np_utils
 from keras import __version__ as keras_version
 from os.path import join
 
 
 parser = argparse.ArgumentParser(description='Test Traffic Sign Classification Model')
 parser.add_argument(
-    'model',
+    '-m',
+    dest='model',
     type=str,
     default='model.h5',
     help='Path to model h5 file. Model should be on the same path.'
 )
 parser.add_argument(
-    'imagepath',
+    '-p',
+    dest='imagepath',
     type=str,
     default='5signs32x32',
     help='Path to images to test.'
@@ -33,11 +37,19 @@ model = load_model(args.model)
 
 
 ## Evaluate model on test data
-testset = "data/test.p"
+testset = '../data/traffic-signs-data/test.p'
 with open(testset, mode='rb') as f:
     test = pickle.load(f)
     
 X_test, y_test = test['features'], test['labels']
+classIds, classCounts = np.unique(y_test, return_counts=True)
+
+labelPairs = np.genfromtxt('signnames.csv', 
+    delimiter=',',skip_header=1, dtype=[('class','i8'),('sign','S50')])
+labels = [v for k,v in labelPairs]
+n_classes = len(labels)
+
+
 X_test_gray = npu.grayscale(X_test)
 X_test_norm = npu.normalize(X_test_gray)
 y_test_hot = np_utils.to_categorical(y_test, n_classes)
@@ -55,11 +67,10 @@ for i in glob.glob(join(args.imagepath, '*.jpg')):
     test2.append(cv2.imread(i))
     
 test2 = np.asarray(test2)
-Xtest2_gray = grayscale(test2)
-Xtest2_norm = normalize(Xtest2_gray)
+Xtest2_gray = npu.grayscale(test2)
+Xtest2_norm = npu.normalize(Xtest2_gray)
 
 print("test2 shape after grayscale =", Xtest2_norm[0].shape)
-
 
 probs = model.predict(Xtest2_norm)
 
@@ -80,18 +91,4 @@ for i in range(len(sign_strs)):
     print('%-13s | %s\n______________| %s\n' % (
         sign_strs[i], '| '.join(predictStrs[0:3]), '| '.join(predictStrs[3:5])))
     
-j = 0
-fig = plt.figure(figsize=(10,10))
-for i in range(len(sign_strs)):
-    j += 1
-    plt.subplot(5,2,j)
-    plt.title(sign_strs[i])
-    plt.axis('off')
-    plt.imshow(cv2.cvtColor(test2[i], cv2.COLOR_BGR2RGB))
-    j += 1
-    ax = fig.add_subplot(5,2,j)
-    ax.bar(classIds, probs[i])
-plt.subplots_adjust(top=1.2)
-plt.imsave(args.imagepath.rstrip('/')+'.jpg') 
-
 print(probs)
