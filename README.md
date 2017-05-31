@@ -65,10 +65,7 @@ The dataset is split into 75% training and 25% test.
 - Number of testing examples: 12630
 - Image data shape: (32, 32, 3)
 - Number of classes: 43
-
-Distributions of classes:
-
-    210 2220 2250 1410 1980 1860  420 1440 1410 1470 2010 1320 2100 2160  780 630  420 1110 1200  210  360  330  390  510  270 1500  600  240  540  270 450  780  240  689  420 1200  390  210 2070  300  360  240  240
+- Distributions of classes: 210 2220 2250 1410 1980 1860  420 1440 1410 1470 2010 1320 2100 2160  780 630  420 1110 1200  210  360  330  390  510  270 1500  600  240  540  270 450  780  240  689  420 1200  390  210 2070  300  360  240  240
 
 Distributions of classes Visualized:
 ![][img1]
