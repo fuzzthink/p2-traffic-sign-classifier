@@ -1,12 +1,3 @@
-+++
-showonlyimage = false
-draft = false
-image = "img/posts/trafficsigns-thumb.png"
-date = "2017-05-31T18:25:22+05:30"
-title = "Traffic Sign Classifier"
-weight = 2
-+++
-
 In this [project](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project), we will design and implement a Deep Convolution Neural Networks that learns to recognize and classify traffic signs. Here is an example of a [published baseline model](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf) on this problem by Pierre Sermanet and Yann LeCun. The goals and various aspects to consider in this project are:
 
 * Design of the Neural Network architecture
@@ -141,7 +132,7 @@ The model did very well. So well in fact that none of my endless adjustments out
 The parameters I tried to tuned includes adding and removing Convolution layers, numbers of filters in various Convolution layers, same/valid padding, dropout %, and final fully connected layers. 
 
 Out of the many modifications, two other architectures are documented below, along with the unmodified Vgg model. 
-
+<hr>
 Unmodified Vgg:
 
 | Layer             | Output/Description                    | 
@@ -161,6 +152,7 @@ Unmodified Vgg:
 | Fully connected   | 43, softmax activation |
 | Accuracy          | training: 97.24%, validation: 99.58%, test: 97.14%
 
+<hr>
 2 other models I used worth documenting:
 
 | Layer             | Output/Description                    | 
@@ -183,6 +175,8 @@ Unmodified Vgg:
 | Dropout           | 50%     |
 | Fully connected   | 43, softmax activation |
 | Accuracy          | training: 98.73%, validation: 99.52%, test: 96.25%
+
+<hr>
 
 | Layer             | Output/Description                    | 
 |:-----------------:|:---------------------------------------------:| 
