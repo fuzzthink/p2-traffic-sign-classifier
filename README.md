@@ -1,6 +1,13 @@
-# Traffic Sign Classification
++++
+showonlyimage = false
+draft = false
+image = "img/posts/trafficsigns-thumb.png"
+date = "2017-05-31T18:25:22+05:30"
+title = "Traffic Sign Classifier"
+weight = 2
++++
 
-In this project - [link to Udacity Repo](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project), we will design and implement a Deep Convolution Neural Networks that learns to recognize and classify traffic signs. Here is an example of a [published baseline model](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf) on this problem by Pierre Sermanet and Yann LeCun. The goals and various aspects to consider in this project are:
+In this [project](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project), we will design and implement a Deep Convolution Neural Networks that learns to recognize and classify traffic signs. Here is an example of a [published baseline model](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf) on this problem by Pierre Sermanet and Yann LeCun. The goals and various aspects to consider in this project are:
 
 * Design of the Neural Network architecture
 * Explore and visualize the data set
@@ -39,7 +46,7 @@ The pickled data is a dictionary with 4 key/value pairs:
 - 'features': 4D array containing raw pixel data of the traffic sign images, (num examples, width, height, channels).
 - 'labels': 1D array containing the label/class id of the traffic sign. The file signnames.csv contains id -> name mappings for each id.
 - 'sizes': list containing tuples, (width, height) representing the the original width and height the image.
-- 'coords': list containing tuples, (x1, y1, x2, y2) representing coordinates of a bounding box around the sign in the image. __THESE COORDINATES ASSUME THE ORIGINAL IMAGE. THE PICKLED DATA CONTAINS RESIZED VERSIONS (32 by 32) OF THESE IMAGES__
+- 'coords': list containing tuples, (x1, y1, x2, y2) representing coordinates of a bounding box around the sign in the image. __NOTE:__ These coordinates assume the original image. The pickled data contains resized versions (32x32) of these images.
 
 ---
 ### Source Files 
@@ -274,7 +281,6 @@ It shows it does indeed reflect the model's accuracy on the test data.
 
 Its 82% probability of guessing Bumpy Road seems to suggest the weight of having "something" inside the white triangle is greater than the orientation of the triangle.
 
-
 ---
 
-#### [Udacity Project Review pdf](UdacityReviews.pdf)
+##### [Project Review](UdacityReviews.pdf)
