@@ -12,10 +12,10 @@ In this [project](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Proje
 
 [//]: # (Image References)
 
-[img1]: pngs/trainimages-hist.png
-[img2]: pngs/trainimages-samples.png
-[img3]: pngs/testimages.png
-[img4]: pngs/testresult-vis.png
+[img1]: assets/trainimages-hist.png
+[img2]: assets/trainimages-samples.png
+[img3]: assets/testimages.png
+[img4]: assets/testresult-vis.png
 
 
 ---
