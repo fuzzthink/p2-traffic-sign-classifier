@@ -66,13 +66,12 @@ The dataset is split into 75% training and 25% test.
 - Distributions of classes: 210 2220 2250 1410 1980 1860  420 1440 1410 1470 2010 1320 2100 2160  780 630  420 1110 1200  210  360  330  390  510  270 1500  600  240  540  270 450  780  240  689  420 1200  390  210 2070  300  360  240  240
 
 Distributions of classes Visualized:
+
+*Traffic sign class distributions in dataset*
 ![][img1]
 
-*Fig 1. Traffic sign class distributions in dataset*
-
-
+*A sample from each class of traffic signs*
 ![][img2]
-*Fig 2. A sample from each class of traffic signs*
 
 
 ---
@@ -224,9 +223,8 @@ Test result:
 
 Five additional images were used for further testing and analysis. 
 
+*Additional images used for testing*
 ![][img3]
-
-*Fig 3. Additional images used for testing*
 
 These images were found in Google Image search. Since the test images are already German traffic signs the training hasn't seen before, I decided to find US traffic sign images to see how the predictions will be like. The images have been chosen such that:
 
@@ -252,9 +250,9 @@ These images were found in Google Image search. Since the test images are alread
     Yield         | 95.11%:b'Yield'                 | 03.89%:b'Wild animals crossing' | 00.67%:b'Bumpy road'            
     ______________| 00.33%:b'Bicycles crossing'     | 00.00%:b'General caution'       
 
-![][img4]
 
-*Fig 4. Test Prediction Result*
+*Test Prediction Result*
+![][img4]
 
 
 #### Result summary
